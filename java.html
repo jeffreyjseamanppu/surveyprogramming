@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Java Programming | Interactive Course Tutorials</title>
+<style>:root{--navy:#10243b;--blue:#1769aa;--bg:#f3f6fa;--line:#dce5ef;--muted:#536477}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1c2d40;font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}header{background:linear-gradient(120deg,#10243b,#17527d);color:white;padding:45px max(24px,calc((100% - 1080px)/2))}header h1{font-size:2.3rem;line-height:1.2;margin:8px 0}header p{max-width:720px}nav{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2;padding:12px 20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}nav a{color:#145b96;text-decoration:none;font-weight:700;padding:6px 12px;border-radius:6px}nav a:hover{background:#eaf3fb}main{max-width:1080px;margin:auto;padding:26px 20px 70px}.lesson{background:white;padding:28px;margin:26px 0;border:1px solid var(--line);border-radius:14px;box-shadow:0 3px 12px #10243b09;scroll-margin-top:85px}h2{font-size:1.8rem;color:#113b60;margin-top:0}h3{color:#155781;margin-top:30px}h4{margin-bottom:5px}.eyebrow{font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:#82d2ff}.tag{display:inline-block;background:#e7f1fa;color:#145581;border-radius:30px;padding:3px 12px;font-size:.82rem;font-weight:700}.callout{background:#edf6fc;border-left:4px solid #2581bb;padding:14px 18px;margin:18px 0}.video{aspect-ratio:16/9;background:#0c1b2c;border-radius:10px;overflow:hidden;max-width:820px}.video iframe{width:100%;height:100%;border:0}.codewrap{position:relative;margin:16px 0 22px}.codewrap button{position:absolute;right:10px;top:10px;background:#e5eff9;color:#143f65;border:0;border-radius:5px;padding:7px 11px;cursor:pointer;font-weight:700}pre{background:#101d2c;color:#e8f2ff;padding:48px 18px 20px;overflow-x:auto;border-radius:9px;font-size:.88rem;line-height:1.65}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#edf2f7;padding:2px 5px;border-radius:4px}details{border:1px solid var(--line);padding:12px 16px;border-radius:8px;margin:12px 0}summary{cursor:pointer;font-weight:700}.checklist li{margin-bottom:7px}footer{text-align:center;color:var(--muted);padding:25px}a{color:#1269a7}@media(max-width:600px){header{padding:32px 22px}.lesson{padding:19px}header h1{font-size:1.85rem}}</style></head><body>
+<header><div class="eyebrow">Applied Computer Science • Programming Tutorials</div><h1>Learn Java: Fundamentals, GUI &amp; Spring Boot</h1><p>Three guided lessons with explanations, complete code examples, instructor videos, hands-on labs, troubleshooting, and independent assignments.</p><span class="tag">Beginner → Intermediate</span> <span class="tag">Java 17+</span></header>
+<nav aria-label="Lesson navigation"><a href="#setup">Getting started</a><a href="#java">1 · Java Basics</a><a href="#gui">2 · Java GUI</a><a href="#spring">3 · Spring Boot</a><a href="#project">Final Challenge</a></nav><main>
+<section id="setup" class="lesson"><h2>Before You Begin</h2><p>Install a Java Development Kit (JDK 17 or later) and a code editor such as IntelliJ IDEA, Eclipse, or VS Code with Java extensions. You will also need a terminal. Spring Boot projects will use Maven through the generated Maven wrapper.</p><ol><li>Install a JDK from a trusted Java distribution.</li><li>Open a terminal and run the following commands. Both should display version information.</li></ol><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>java -version
+javac -version</code></pre></div><p>For Spring Boot, visit <a href="https://start.spring.io" target="_blank" rel="noopener">Spring Initializr</a>. All examples below are instructional examples; they are not transcripts of the linked videos.</p><div class="callout"><strong>How to study:</strong> Read the concept, type and run the example yourself, watch the instructor video, then complete the lab before attempting the assignment.</div></section>
+<section id="java" class="lesson"><span class="tag">Lesson 1</span><h2>Introduction to Java Programming</h2><p><strong>Learning outcomes:</strong> Compile and run a Java program, identify data types, use decisions and loops, write methods, and create a simple object.</p><h3>Instructor video: Java Intro Part I</h3><div class="video"><iframe src="https://player.vimeo.com/video/1044133494" title="Java Intro Part I by Jeff Seaman" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><p><a href="https://vimeo.com/1044133494" target="_blank" rel="noopener">Open the Java introduction video on Vimeo</a></p>
+<h3>1.1 Your first Java program</h3><p>Java programs are organized into <strong>classes</strong>. The <code>main</code> method is where a basic command-line program begins. <code>System.out.println</code> displays a line of text. Java statements generally end with a semicolon.</p><p>Save this file as <code>HelloJava.java</code>. The public class name must match the file name.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>public class HelloJava {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java students!");
+    }
+}</code></pre></div><p>Compile with <code>javac HelloJava.java</code> and run with <code>java HelloJava</code>. Expected output: <strong>Hello, Java students!</strong></p>
+<h3>1.2 Variables and data types</h3><p>A variable stores a value. <code>int</code> stores whole numbers, <code>double</code> stores decimals, <code>boolean</code> stores true/false, and <code>String</code> stores text. Java is statically typed, so each variable has a declared type.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>public class VariablesDemo {
+    public static void main(String[] args) {
+        String student = "Morgan";
+        int completedLessons = 2;
+        double grade = 94.5;
+        boolean passed = grade &gt;= 60;
+
+        System.out.println(student + " completed " + completedLessons + " lessons.");
+        System.out.println("Grade: " + grade);
+        System.out.println("Passed: " + passed);
+    }
+}</code></pre></div><p><strong>Try it:</strong> Change the grade to 55.0. Predict how <code>passed</code> changes before running the program.</p>
+<h3>1.3 Conditionals and loops</h3><p>An <code>if</code> statement runs code when its condition is true. A <code>for</code> loop repeats an action a known number of times.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>public class ControlFlowDemo {
+    public static void main(String[] args) {
+        int score = 82;
+        if (score &gt;= 90) {
+            System.out.println("A");
+        } else if (score &gt;= 80) {
+            System.out.println("B");
+        } else {
+            System.out.println("Keep practicing");
+        }
+
+        for (int lesson = 1; lesson &lt;= 3; lesson++) {
+            System.out.println("Starting lesson " + lesson);
+        }
+    }
+}</code></pre></div><p><strong>Expected output:</strong> B, followed by Starting lesson 1, 2, and 3 on separate lines.</p>
+<h3>1.4 Methods, classes, and objects</h3><p>A <strong>method</strong> groups reusable behavior. A <strong>class</strong> defines a type of object; an <strong>object</strong> is an instance of that class. Here a <code>Student</code> stores a name and produces a greeting.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>class Student {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public String greet() {
+        return "Welcome, " + name + "!";
+    }
+}
+
+public class StudentDemo {
+    public static void main(String[] args) {
+        Student student = new Student("Alex");
+        System.out.println(student.greet());
+    }
+}</code></pre></div><p>Save as <code>StudentDemo.java</code>. The constructor initializes the object's name. <code>private</code> protects the field from direct access outside the class, while <code>public</code> exposes the constructor and greeting method.</p>
+<h3>Guided lab: Grade calculator</h3><ol class="checklist"><li>Create <code>GradeCalculator.java</code> with a <code>main</code> method.</li><li>Declare three <code>double</code> quiz scores and calculate their average.</li><li>Use an <code>if/else if/else</code> chain to print A (90+), B (80+), C (70+), D (60+), or F.</li><li>Test scores of 90, 80, 70 and confirm the average is 80 (B).</li><li>Change one score and explain how the result changes.</li></ol><details><summary>View a possible lab solution</summary><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>public class GradeCalculator {
+    public static void main(String[] args) {
+        double q1 = 90, q2 = 80, q3 = 70;
+        double average = (q1 + q2 + q3) / 3;
+        String letter;
+        if (average &gt;= 90) letter = "A";
+        else if (average &gt;= 80) letter = "B";
+        else if (average &gt;= 70) letter = "C";
+        else if (average &gt;= 60) letter = "D";
+        else letter = "F";
+        System.out.println("Average: " + average + ", Grade: " + letter);
+    }
+}</code></pre></div></details><h3>Independent assignment</h3><p>Build a <strong>Student Progress Tracker</strong> that stores a student name, prints progress for five lessons using a loop, and uses a method to decide whether the student passed based on a numeric score. Submit your <code>.java</code> file, a screenshot of the output, and a short explanation of the method and loop.</p></section>
+<section id="gui" class="lesson"><span class="tag">Lesson 2</span><h2>Java GUI Programming with Swing</h2><p><strong>Learning outcomes:</strong> Explain event-driven programming, create a window, arrange components, accept user input, and respond to button clicks.</p><h3>Instructor video: Java GUI Part 2</h3><div class="video"><iframe src="https://player.vimeo.com/video/1046424903" title="Java GUI Part 2 by Jeff Seaman" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><p><a href="https://vimeo.com/1046424903" target="_blank" rel="noopener">Open the Java GUI video on Vimeo</a></p><h3>2.1 Understanding Swing components</h3><p><code>JFrame</code> is the application window; <code>JPanel</code> groups components; <code>JLabel</code> shows text; <code>JTextField</code> accepts typed input; and <code>JButton</code> triggers an action. A <strong>layout manager</strong> determines component placement. An <strong>action listener</strong> runs when a user clicks a button.</p>
+<h3>2.2 Build a greeting application</h3><p>Save the complete program below as <code>GreetingApp.java</code>. The <code>SwingUtilities.invokeLater</code> call starts the GUI on Swing's event dispatch thread.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class GreetingApp {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(GreetingApp::createWindow);
+    }
+
+    private static void createWindow() {
+        JFrame frame = new JFrame("Student Greeting App");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel(new GridLayout(3, 1, 8, 8));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JTextField nameField = new JTextField();
+        JButton greetButton = new JButton("Greet Student");
+        JLabel resultLabel = new JLabel("Enter your name above.");
+
+        greetButton.addActionListener(event -&gt; {
+            String name = nameField.getText().trim();
+            if (name.isEmpty()) {
+                resultLabel.setText("Please enter your name.");
+            } else {
+                resultLabel.setText("Welcome, " + name + "!");
+            }
+        });
+
+        panel.add(nameField);
+        panel.add(greetButton);
+        panel.add(resultLabel);
+        frame.add(panel);
+        frame.setSize(420, 220);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}</code></pre></div><p>Run <code>javac GreetingApp.java</code> and <code>java GreetingApp</code> on a computer with a desktop graphical environment. Type your name and click the button. The label should display a personalized greeting. A headless server or text-only online compiler may not support desktop windows.</p>
+<h3>2.3 Extend the GUI: adding numbers</h3><p>This second example demonstrates input conversion and error handling. Save as <code>AdditionApp.java</code>.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class AdditionApp {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -&gt; {
+            JFrame frame = new JFrame("Addition Calculator");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JPanel panel = new JPanel(new GridLayout(4, 1, 8, 8));
+            panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+            JTextField first = new JTextField();
+            JTextField second = new JTextField();
+            JButton add = new JButton("Add Numbers");
+            JLabel result = new JLabel("Result appears here");
+
+            add.addActionListener(event -&gt; {
+                try {
+                    double a = Double.parseDouble(first.getText().trim());
+                    double b = Double.parseDouble(second.getText().trim());
+                    result.setText("Total: " + (a + b));
+                } catch (NumberFormatException ex) {
+                    result.setText("Enter two valid numbers.");
+                }
+            });
+
+            panel.add(first);
+            panel.add(second);
+            panel.add(add);
+            panel.add(result);
+            frame.add(panel);
+            frame.setSize(360, 260);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+}</code></pre></div><h3>Guided lab: GUI improvements</h3><ol><li>Run the greeting application and identify each Swing component.</li><li>Change the window title, button label, and welcome message.</li><li>Enter an empty name and verify the validation message.</li><li>Run the addition calculator and test 12 + 8, then enter nonnumeric input.</li><li>Explain why <code>try/catch</code> is useful for input validation.</li></ol><h3>Independent assignment</h3><p>Create a <strong>GUI Grade Calculator</strong> with three text fields for quiz scores, a Calculate button, and a label displaying the average and letter grade. Validate invalid or missing inputs. Submit the source file, screenshots of valid and invalid inputs, and a brief explanation of the button's event handler.</p></section>
+<section id="spring" class="lesson"><span class="tag">Lesson 3</span><h2>Spring Framework &amp; Spring Boot</h2><p><strong>Learning outcomes:</strong> Describe Spring Boot's purpose, generate a project with Spring Initializr, understand annotations, create REST endpoints, and test JSON responses.</p><h3>Instructor video: Java SpringBoot – Video 2</h3><div class="video"><iframe src="https://player.vimeo.com/video/1049740072" title="Java SpringBoot Video 2 by Jeff Seaman" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><p><a href="https://vimeo.com/1049740072" target="_blank" rel="noopener">Open the Spring Boot video on Vimeo</a></p><h3>3.1 Spring vs. Spring Boot</h3><p>The <strong>Spring Framework</strong> provides tools for building Java applications, including dependency injection and web development. <strong>Spring Boot</strong> builds on Spring by simplifying configuration, managing dependencies through starters, and supporting embedded web servers. A <strong>REST API</strong> allows clients to request data over HTTP, often receiving JSON.</p>
+<h3>3.2 Generate your project</h3><ol><li>Visit <a href="https://start.spring.io" target="_blank" rel="noopener">start.spring.io</a>.</li><li>Select <strong>Maven</strong>, <strong>Java</strong>, and a stable Spring Boot version compatible with your installed JDK. For this lesson, use Java 17 or later and verify the version requirements shown by Initializr.</li><li>Set Group to <code>com.example</code> and Artifact to <code>studentapi</code>.</li><li>Add the <strong>Spring Web</strong> dependency (in newer versions this may be labeled Spring Web MVC).</li><li>Click Generate, unzip the project, and open it in your IDE as a Maven project.</li></ol><p>The project will contain <code>pom.xml</code> for dependencies, <code>src/main/java</code> for Java source, and <code>src/main/resources/application.properties</code> for configuration.</p>
+<h3>3.3 Create your first REST controller</h3><p>In the package <code>com.example.studentapi</code>, create <code>GreetingController.java</code>:</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>package com.example.studentapi;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
+
+@RestController
+public class GreetingController {
+
+    @GetMapping("/api/greeting")
+    public Map&lt;String, String&gt; greeting(
+            @RequestParam(defaultValue = "Student") String name) {
+        return Map.of("message", "Welcome, " + name + "!");
+    }
+}</code></pre></div><p><code>@RestController</code> marks the class as a web controller. <code>@GetMapping</code> connects a URL to a method. <code>@RequestParam</code> reads a value from the URL query string. Returning a map produces a JSON response when the Spring web JSON converter is available through the web starter.</p><h3>3.4 Run and test</h3><p>Keep the generated <code>StudentapiApplication.java</code> main class in the same base package. From the project directory, run:</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code># macOS / Linux
+./mvnw spring-boot:run
+
+# Windows PowerShell
+.\mvnw.cmd spring-boot:run</code></pre></div><p>Visit <a href="http://localhost:8080/api/greeting?name=Alex" target="_blank" rel="noopener">http://localhost:8080/api/greeting?name=Alex</a> on the computer running your app. Expected JSON:</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>{"message":"Welcome, Alex!"}</code></pre></div><p>Try <code>http://localhost:8080/api/greeting</code> to see the default student name.</p>
+<h3>3.5 Add a second API endpoint</h3><p>Create <code>CourseController.java</code> in the same package. This endpoint returns a sample course record.</p><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>package com.example.studentapi;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
+
+@RestController
+public class CourseController {
+
+    @GetMapping("/api/course")
+    public Map&lt;String, Object&gt; course() {
+        return Map.of(
+            "code", "CMPS",
+            "title", "Introduction to Java",
+            "lessons", 3,
+            "active", true
+        );
+    }
+}</code></pre></div><p>Restart if necessary and visit <code>http://localhost:8080/api/course</code>. Explain why JSON contains quoted strings, a numeric value, and a boolean value.</p>
+<h3>Guided lab: Student information API</h3><ol><li>Create and run the project with Spring Web.</li><li>Verify the greeting endpoint with and without a <code>name</code> parameter.</li><li>Add the course endpoint and inspect the JSON in your browser.</li><li>Change the course title and add an <code>instructor</code> property.</li><li>Take screenshots of both working endpoints and identify the annotations used.</li></ol><h3>Independent assignment</h3><p>Build a <strong>Student Course API</strong> with <code>GET /api/student?name=...</code> returning a student greeting and <code>GET /api/courses</code> returning a list of at least three courses. Include a README describing how to run the application, sample endpoint URLs, screenshots of JSON responses, and a link to your GitHub repository.</p><details><summary>Optional challenge: list of courses endpoint</summary><div class="codewrap"><button onclick="copyCode(this)">Copy code</button><pre><code>package com.example.studentapi;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+public class CoursesController {
+    @GetMapping("/api/courses")
+    public List&lt;Map&lt;String, String&gt;&gt; courses() {
+        return List.of(
+            Map.of("code", "JAVA101", "title", "Java Basics"),
+            Map.of("code", "JAVA201", "title", "Java GUI"),
+            Map.of("code", "JAVA301", "title", "Spring Boot")
+        );
+    }
+}</code></pre></div></details></section>
+<section id="project" class="lesson"><h2>Final Challenge: Connect the Concepts</h2><p>Choose one project format and demonstrate the Java skills you learned: a command-line student tracker, a Swing desktop grade calculator, or a Spring Boot student course API. Your application should have clear naming, user-friendly output, input validation where relevant, and an explanation of its program flow.</p><h3>Submission checklist</h3><ul><li>Source code or GitHub repository URL</li><li>README with installation and run instructions</li><li>At least two test cases with expected results</li><li>Screenshots showing the program running</li><li>One paragraph describing classes, methods, and (if applicable) event listeners or HTTP endpoints</li></ul><h3>Common troubleshooting</h3><details><summary>Java command not found</summary><p>Confirm the JDK is installed and its <code>bin</code> directory is on your system PATH. Restart your terminal and check <code>java -version</code>.</p></details><details><summary>Public class name does not match file</summary><p>For <code>public class GreetingApp</code>, save the file as <code>GreetingApp.java</code> with matching capitalization.</p></details><details><summary>Swing window does not appear</summary><p>Run on a desktop environment with graphical support. A remote or headless environment may not be able to display a Swing window.</p></details><details><summary>Spring Boot port 8080 already in use</summary><p>Stop the other service or add <code>server.port=8081</code> to <code>src/main/resources/application.properties</code>, restart, and use port 8081 in the URLs.</p></details><details><summary>Spring endpoint returns 404</summary><p>Check the endpoint path and HTTP method. Make sure controller classes are in the main application's package or a subpackage, and confirm the server started successfully.</p></details><h3>Additional learning resources</h3><p><a href="https://dev.java/learn/" target="_blank" rel="noopener">Official Java learning resources</a> · <a href="https://docs.oracle.com/javase/tutorial/uiswing/" target="_blank" rel="noopener">Oracle Swing tutorials</a> · <a href="https://spring.io/guides/gs/rest-service/" target="_blank" rel="noopener">Spring REST guide</a></p></section></main><footer>Java Programming Tutorials • Instructor videos by Jeff Seaman • For educational use</footer><script>function copyCode(button){const text=button.parentElement.querySelector('code').textContent;navigator.clipboard.writeText(text).then(()=>{const original=button.textContent;button.textContent='Copied!';setTimeout(()=>button.textContent=original,1600)}).catch(()=>{button.textContent='Select code to copy'})}</script></body></html>
