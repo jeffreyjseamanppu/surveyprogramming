@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C# ASP.NET Core: NFL Teams & Players API</title><style>body{font:16px/1.65 system-ui,Arial;background:#f3f6fa;color:#172334;margin:0}header{background:#14263e;color:white;padding:42px max(24px,calc((100vw - 960px)/2))}main{max-width:960px;margin:auto;padding:26px}section{background:white;padding:24px;margin:20px 0;border-radius:12px;box-shadow:0 2px 12px #17233412}h1,h2,h3{line-height:1.25}h2{color:#164b77}pre{background:#111e2d;color:#e9f5ff;padding:18px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.5}code{font-family:ui-monospace,Menlo,Consolas,monospace}p code,li code{background:#e9eef4;padding:2px 5px;border-radius:4px}a{color:#075a9a}table{border-collapse:collapse;width:100%}td,th{border:1px solid #d8e0e8;padding:9px;text-align:left}th{background:#edf3fa}.note{border-left:4px solid #287bb5;padding:12px 16px;background:#eef7ff}.warning{border-left:4px solid #d18a21;padding:12px 16px;background:#fff8e9}footer{text-align:center;padding:28px;color:#667}</style></head><body><header><h1>Build an NFL Teams & Players API</h1><p>Introduction to C#, ASP.NET Core Minimal APIs, and Visual Studio Code on macOS</p><p>Instructor demonstration • Beginner level • .NET 10</p></header><main>
+<section><h2>Learning objectives</h2><p>By the end of this tutorial, students will create a C# project, define Team and Player classes, build REST endpoints, and use a browser or terminal to test JSON responses. This project uses <strong>illustrative sample rosters</strong>, not live NFL data.</p></section>
+<section><h2>1. Install the software</h2><ol><li>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li><li>Install the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 SDK</a> (Arm64 for Apple Silicon, x64 for Intel). Install the SDK, not only the runtime.</li><li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit extension</a> in VS Code.</li></ol><p>Open VS Code → Terminal → New Terminal and verify:</p><pre><code>dotnet --version</code></pre><div class="note">If you see <code>dquote&gt;</code>, press Control+C. C# source belongs in a <code>.cs</code> file, not directly in the terminal.</div></section>
+<section><h2>2. Create the project</h2><p>Run these commands <strong>one line at a time</strong> in the terminal:</p><pre><code>mkdir -p ~/Documents/code
+cd ~/Documents/code
+dotnet new web -n NFLTeamsApi -f net10.0
+cd NFLTeamsApi
+code .</code></pre><p>If <code>code .</code> fails, use VS Code → File → Open Folder → <code>Documents/code/NFLTeamsApi</code>.</p><p>Your project now contains <code>NFLTeamsApi.csproj</code> and <code>Program.cs</code>. Always run <code>dotnet run</code> from this project directory.</p></section>
+<section><h2>3. Create the data models</h2><p>Create a folder named <code>Models</code>. Inside it, create <code>Team.cs</code>:</p><pre><code>namespace NFLTeamsApi.Models;
+
+public class Team
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string City { get; set; } = "";
+    public string Conference { get; set; } = "";
+}</code></pre><p>Now create <code>Models/Player.cs</code>:</p><pre><code>namespace NFLTeamsApi.Models;
+
+public class Player
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Position { get; set; } = "";
+    public int JerseyNumber { get; set; }
+    public int TeamId { get; set; }
+}</code></pre><p><strong>Teaching point:</strong> <code>TeamId</code> connects a player to a team. It works like a foreign key in a relational database, although this demonstration uses in-memory lists.</p></section>
+<section><h2>4. Write Program.cs — complete application</h2><p>Replace the entire contents of <code>Program.cs</code> with this code:</p><pre><code>using NFLTeamsApi.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Sample data only: not a current NFL roster feed.
+var teams = new List&lt;Team&gt;
+{
+    new() { Id = 1, Name = "Steelers", City = "Pittsburgh", Conference = "AFC" },
+    new() { Id = 2, Name = "Chiefs", City = "Kansas City", Conference = "AFC" },
+    new() { Id = 3, Name = "Eagles", City = "Philadelphia", Conference = "NFC" }
+};
+
+var players = new List&lt;Player&gt;
+{
+    new() { Id = 1, Name = "T.J. Watt", Position = "LB", JerseyNumber = 90, TeamId = 1 },
+    new() { Id = 2, Name = "Patrick Mahomes", Position = "QB", JerseyNumber = 15, TeamId = 2 },
+    new() { Id = 3, Name = "Jalen Hurts", Position = "QB", JerseyNumber = 1, TeamId = 3 }
+};
+
+app.MapGet("/", () =&gt; "NFL Teams &amp; Players API is running!");
+
+// READ: all teams
+app.MapGet("/api/teams", () =&gt; Results.Ok(teams));
+
+// READ: one team
+app.MapGet("/api/teams/{id:int}", (int id) =&gt;
+{
+    var team = teams.FirstOrDefault(t =&gt; t.Id == id);
+    return team is null ? Results.NotFound() : Results.Ok(team);
+});
+
+// READ: all players
+app.MapGet("/api/players", () =&gt; Results.Ok(players));
+
+// READ: players belonging to a team
+app.MapGet("/api/teams/{id:int}/players", (int id) =&gt;
+{
+    if (!teams.Any(t =&gt; t.Id == id)) return Results.NotFound();
+    return Results.Ok(players.Where(p =&gt; p.TeamId == id).ToList());
+});
+
+// CREATE: add a team
+app.MapPost("/api/teams", (Team input) =&gt;
+{
+    if (string.IsNullOrWhiteSpace(input.Name) ||
+        string.IsNullOrWhiteSpace(input.City) ||
+        string.IsNullOrWhiteSpace(input.Conference))
+        return Results.BadRequest("Name, city and conference are required.");
+
+    input.Id = teams.Count == 0 ? 1 : teams.Max(t =&gt; t.Id) + 1;
+    teams.Add(input);
+    return Results.Created($"/api/teams/{input.Id}", input);
+});
+
+// CREATE: add a player to an existing team
+app.MapPost("/api/players", (Player input) =&gt;
+{
+    if (string.IsNullOrWhiteSpace(input.Name) ||
+        string.IsNullOrWhiteSpace(input.Position) ||
+        input.JerseyNumber &lt; 0 || input.JerseyNumber &gt; 99)
+        return Results.BadRequest("Valid name, position and jersey number are required.");
+
+    if (!teams.Any(t =&gt; t.Id == input.TeamId))
+        return Results.BadRequest("TeamId must refer to an existing team.");
+
+    input.Id = players.Count == 0 ? 1 : players.Max(p =&gt; p.Id) + 1;
+    players.Add(input);
+    return Results.Created($"/api/players/{input.Id}", input);
+});
+
+// UPDATE: edit a player
+app.MapPut("/api/players/{id:int}", (int id, Player input) =&gt;
+{
+    var player = players.FirstOrDefault(p =&gt; p.Id == id);
+    if (player is null) return Results.NotFound();
+    if (string.IsNullOrWhiteSpace(input.Name) ||
+        string.IsNullOrWhiteSpace(input.Position) ||
+        input.JerseyNumber &lt; 0 || input.JerseyNumber &gt; 99 ||
+        !teams.Any(t =&gt; t.Id == input.TeamId))
+        return Results.BadRequest("Invalid player information.");
+
+    player.Name = input.Name;
+    player.Position = input.Position;
+    player.JerseyNumber = input.JerseyNumber;
+    player.TeamId = input.TeamId;
+    return Results.Ok(player);
+});
+
+// DELETE: remove a player
+app.MapDelete("/api/players/{id:int}", (int id) =&gt;
+{
+    var player = players.FirstOrDefault(p =&gt; p.Id == id);
+    if (player is null) return Results.NotFound();
+    players.Remove(player);
+    return Results.NoContent();
+});
+
+app.Run();</code></pre><div class="note"><strong>Explain in class:</strong> <code>MapGet</code> reads data, <code>MapPost</code> creates data, <code>MapPut</code> updates data, and <code>MapDelete</code> removes data. <code>Results.Ok</code> sends HTTP 200; <code>Results.Created</code> sends 201; <code>Results.NotFound</code> sends 404.</div></section>
+<section><h2>5. Build and run the API</h2><pre><code>dotnet build
+dotnet run --urls http://localhost:5050</code></pre><p>Keep this terminal open while testing. Visit these URLs in your browser:</p><ul><li><a href="http://localhost:5050/">http://localhost:5050/</a></li><li><a href="http://localhost:5050/api/teams">http://localhost:5050/api/teams</a></li><li><a href="http://localhost:5050/api/players">http://localhost:5050/api/players</a></li><li><a href="http://localhost:5050/api/teams/1/players">http://localhost:5050/api/teams/1/players</a></li></ul><p>These links work only while your local server is running.</p><h3>Expected JSON from /api/teams/1/players</h3><pre><code>[
+  {
+    "id": 1,
+    "name": "T.J. Watt",
+    "position": "LB",
+    "jerseyNumber": 90,
+    "teamId": 1
+  }
+]</code></pre></section>
+<section><h2>6. Test POST, PUT, and DELETE from a second terminal</h2><p>In VS Code choose Terminal → New Terminal. Leave the API running in the first terminal.</p><h3>Add a team (POST)</h3><pre><code>curl -i -X POST http://localhost:5050/api/teams \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Bills","city":"Buffalo","conference":"AFC"}'</code></pre><h3>Add a player (POST)</h3><pre><code>curl -i -X POST http://localhost:5050/api/players \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Sample Rookie","position":"WR","jerseyNumber":18,"teamId":1}'</code></pre><h3>Update a player (PUT)</h3><pre><code>curl -i -X PUT http://localhost:5050/api/players/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"T.J. Watt","position":"EDGE","jerseyNumber":90,"teamId":1}'</code></pre><h3>Delete a player (DELETE)</h3><pre><code>curl -i -X DELETE http://localhost:5050/api/players/3</code></pre><p>Use <code>curl http://localhost:5050/api/players</code> to inspect the updated list.</p><div class="warning"><strong>Important:</strong> Data is stored only in memory. Restarting the server restores the original example lists. This project does not access an official NFL API.</div></section>
+<section><h2>7. REST API reference</h2><table><thead><tr><th>Method</th><th>Endpoint</th><th>Action</th></tr></thead><tbody><tr><td>GET</td><td>/api/teams</td><td>List teams</td></tr><tr><td>GET</td><td>/api/teams/1</td><td>Find team 1</td></tr><tr><td>GET</td><td>/api/players</td><td>List players</td></tr><tr><td>GET</td><td>/api/teams/1/players</td><td>Players on team 1</td></tr><tr><td>POST</td><td>/api/teams</td><td>Create team</td></tr><tr><td>POST</td><td>/api/players</td><td>Create player</td></tr><tr><td>PUT</td><td>/api/players/1</td><td>Edit player 1</td></tr><tr><td>DELETE</td><td>/api/players/3</td><td>Delete player 3</td></tr></tbody></table></section>
+<section><h2>8. Hands-on exercise</h2><ol><li>Add a fourth team to the starter data.</li><li>Add two new players assigned to that team.</li><li>Create a <code>GET /api/players/{id:int}</code> endpoint that returns a player or HTTP 404.</li><li>Create a <code>GET /api/players/position/{position}</code> endpoint using <code>Where</code> and a case-insensitive comparison.</li><li>Test each endpoint and capture its JSON response.</li></ol><h3>Challenge: show players with team names</h3><p>Create a new endpoint <code>/api/roster</code> that joins the two lists and returns each player's name, position, and team city/name. Discuss how this relates to SQL joins.</p></section>
+<section><h2>9. Discussion question</h2><p>How is a C# class such as <code>Player</code> similar to a database table? Explain the purpose of <code>TeamId</code>, compare GET and POST requests, and describe one advantage and one limitation of keeping data in an in-memory <code>List&lt;Player&gt;</code> rather than a PostgreSQL database. Respond to a classmate with an additional example.</p></section>
+<section><h2>10. Student assignment: NFL Roster Manager (100 points)</h2><p>Extend the demonstration into your own NFL Roster Manager API. Your application must support at least four teams and eight players, include all four HTTP methods, validate new players, and support filtering by team and position.</p><table><thead><tr><th>Requirement</th><th>Points</th></tr></thead><tbody><tr><td>Correct project setup and models</td><td>15</td></tr><tr><td>Seed teams and players</td><td>15</td></tr><tr><td>GET endpoints and filtering</td><td>20</td></tr><tr><td>POST endpoint with validation</td><td>15</td></tr><tr><td>PUT and DELETE endpoints</td><td>20</td></tr><tr><td>README, testing evidence, and GitHub link</td><td>15</td></tr></tbody></table><p><strong>Submit:</strong> GitHub repository URL, README with setup commands, screenshots of successful GET/POST/PUT/DELETE tests, and a short reflection on what you learned. Do not commit <code>bin/</code> or <code>obj/</code> directories.</p></section>
+<section><h2>11. Video and documentation resources</h2><ul><li><a href="https://www.youtube.com/watch?v=GhQdlIFylQ8">C# Full Course for Beginners — freeCodeCamp</a></li><li><a href="https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code">Create a .NET console app using Visual Studio Code — Microsoft</a></li><li><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api">Create a Minimal API with ASP.NET Core — Microsoft</a></li><li><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis">ASP.NET Core Minimal APIs overview</a></li><li><a href="https://www.youtube.com/results?search_query=Microsoft+dotnet+minimal+api+beginner+tutorial">Find Microsoft .NET Minimal API video tutorials</a></li></ul></section>
+<section><h2>12. Common Mac troubleshooting</h2><table><thead><tr><th>Problem</th><th>Fix</th></tr></thead><tbody><tr><td>Couldn't find a project to run</td><td><code>cd ~/Documents/code/NFLTeamsApi</code> and verify <code>NFLTeamsApi.csproj</code> exists.</td></tr><tr><td><code>dquote&gt;</code> in terminal</td><td>Press Control+C. Write C# in <code>Program.cs</code>, not the shell.</td></tr><tr><td>Port already in use</td><td>Stop the old server with Control+C or use <code>--urls http://localhost:5051</code>.</td></tr><tr><td>Type or namespace not found</td><td>Confirm both files are in <code>Models/</code> and use namespace <code>NFLTeamsApi.Models</code>.</td></tr><tr><td>Browser cannot connect</td><td>Confirm the server says “Now listening on” and the URL uses the same port.</td></tr></tbody></table></section>
+</main><footer>Instructor demonstration • C# / ASP.NET Core / VS Code • Sample NFL-themed educational data</footer></body></html>
