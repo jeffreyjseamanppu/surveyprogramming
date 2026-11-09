@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Introduction to C# and ASP.NET Core | Learning Module</title><style>
+:root{--navy:#17253f;--blue:#2458a6;--light:#f2f6fb;--ink:#1d2939;--border:#dbe4ef}*{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:#f6f8fc}header{background:linear-gradient(125deg,#142744,#365da1);color:white;padding:48px max(22px,calc((100% - 1000px)/2))}header h1{font-size:clamp(1.8rem,4vw,2.8rem);margin:0}header p{max-width:760px}main{max-width:1000px;margin:0 auto;padding:24px}nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 28px}nav a{background:white;border:1px solid var(--border);border-radius:20px;padding:6px 13px;text-decoration:none;color:var(--blue)}section{background:white;padding:26px;margin:20px 0;border:1px solid var(--border);border-radius:14px;box-shadow:0 3px 15px #16233d09}h2{color:var(--navy);margin-top:0;border-bottom:2px solid #e9eef7;padding-bottom:9px}h3{color:#244a84;margin-top:25px}a{color:#174f9c}pre{background:#15243b;color:#eaf2ff;padding:18px;border-radius:9px;overflow:auto;line-height:1.5}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#eef2f8;padding:2px 5px;border-radius:4px;color:#273c60}.note{border-left:4px solid #3e70bd;background:var(--light);padding:13px 16px;margin:15px 0}.video{background:#f5f8fc;padding:16px;border-radius:10px;margin:14px 0}.video iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.tile{border:1px solid var(--border);padding:15px;border-radius:10px}.small{font-size:.9rem;color:#4d5c71}table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--border);padding:10px;text-align:left}th{background:#eef3fa}footer{text-align:center;padding:30px;color:#63738a}details{background:#f5f8fc;border:1px solid var(--border);border-radius:8px;padding:12px;margin:10px 0}summary{cursor:pointer;font-weight:650}@media print{body{background:white}section{box-shadow:none;break-inside:avoid}nav,iframe{display:none}header{padding:20px}}
+</style></head><body><header><p>PROGRAMMING LEARNING MODULE • BEGINNER / EARLY INTERMEDIATE</p><h1>Introduction to C# &amp; ASP.NET Core Web Programming</h1><p>Learn C# syntax, build console programs, and develop a REST API with Visual Studio Code and the .NET SDK.</p><p><strong>Suggested duration:</strong> 2 weeks &nbsp; | &nbsp; <strong>Tools:</strong> VS Code, .NET 10 SDK, C# Dev Kit, browser, curl or API client</p></header><main><nav><a href="#outcomes">Outcomes</a><a href="#setup">Setup</a><a href="#resources">Resources &amp; videos</a><a href="#lesson">Lesson &amp; code</a><a href="#web">Web API</a><a href="#exercises">Exercises</a><a href="#discussion">Discussion</a><a href="#assignment">Assignment</a></nav>
+<section id="outcomes"><h2>1. Learning objectives</h2><p>By the end of this module, students should be able to:</p><ol><li>Explain the roles of C#, .NET, ASP.NET Core, the SDK, and Visual Studio Code.</li><li>Create and run C# console applications from the VS Code terminal.</li><li>Use variables, data types, conditional logic, loops, methods, collections, and classes.</li><li>Describe HTTP, JSON, REST APIs, and client/server communication.</li><li>Build and test a small ASP.NET Core Minimal API with GET and POST endpoints.</li><li>Use GitHub to submit a reproducible programming project.</li></ol><div class="note"><strong>Terminology:</strong> “.NET Core” was the former product name. Modern versions are called <strong>.NET</strong>; ASP.NET Core remains the web framework's name. This module targets .NET 10 (LTS).</div></section>
+<section id="setup"><h2>2. Install and configure your development environment</h2><ol><li>Install <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>.</li><li>Install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/10.0" target="_blank" rel="noopener">.NET 10 SDK</a> (not only the runtime).</li><li>Open VS Code Extensions and install <strong>C# Dev Kit</strong> by Microsoft.</li><li>Open Terminal → New Terminal and verify the SDK:</li></ol><pre><code>dotnet --version
+ dotnet --list-sdks</code></pre><p>Then create a first application:</p><pre><code>dotnet new console -n HelloCSharp
+cd HelloCSharp
+code .
+dotnet run</code></pre><p>If <code>code .</code> is unavailable, open the folder using VS Code's <em>File → Open Folder</em> menu. Edit <code>Program.cs</code> and run again. On macOS, you may need to install the <code>code</code> shell command from VS Code's Command Palette.</p><div class="note"><strong>Troubleshooting:</strong> If <code>dotnet</code> is not found, restart VS Code after installing the SDK and check your PATH. If the project does not compile, read the first build error and check braces, semicolons, and spelling.</div></section>
+<section id="resources"><h2>3. Learning resources and instructional videos</h2><div class="grid"><div class="tile"><strong>Microsoft Learn: C# in VS Code</strong><p>Official installation and Hello World walkthrough.</p><a href="https://code.visualstudio.com/docs/csharp/get-started" target="_blank" rel="noopener">Read the guide</a></div><div class="tile"><strong>Microsoft Learn: C# documentation</strong><p>Language syntax, tutorials, classes, and examples.</p><a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" rel="noopener">Explore C#</a></div><div class="tile"><strong>ASP.NET Core Minimal API tutorial</strong><p>Official guide for building web endpoints.</p><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0" target="_blank" rel="noopener">Read the tutorial</a></div><div class="tile"><strong>HTTP and API fundamentals</strong><p>Understand requests, responses, and status codes.</p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP" target="_blank" rel="noopener">Read HTTP documentation</a></div></div><h3>Video 1 — Set up C# and .NET in VS Code</h3><div class="video"><p>Official Visual Studio Code beginner setup video (about 10 minutes).</p><iframe src="https://www.youtube-nocookie.com/embed/ZVGutgqBMUM" title="Getting Started with C# and .NET in VS Code" loading="lazy" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=ZVGutgqBMUM" target="_blank" rel="noopener">Open video in YouTube</a></p></div><h3>Video 2 — C# full beginner course</h3><div class="video"><p>freeCodeCamp course: focus on variables (17:23), data types (30:06), methods (1:29:49), conditions (1:46:06), loops (2:25:31), and classes (3:24:34). Note that the video is older; follow this module's current .NET installation steps.</p><iframe src="https://www.youtube-nocookie.com/embed/GhQdlIFylQ8" title="C# Full Course for Beginners" loading="lazy" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=GhQdlIFylQ8" target="_blank" rel="noopener">Open video in YouTube</a></p></div><h3>Video 3 — Official ASP.NET Core learning path</h3><p>For the web portion, follow the <a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0" target="_blank" rel="noopener">Microsoft Minimal API tutorial</a> and watch beginner web API videos from the <a href="https://www.youtube.com/@dotnet/search?query=minimal%20api" target="_blank" rel="noopener">official .NET channel</a>. Video availability and embeds may vary by LMS.</p></section>
+<section id="lesson"><h2>4. C# fundamentals: lessons and sample code</h2><h3>4.1 Your first C# program</h3><p>C# is a statically typed, object-oriented language. Modern console templates allow top-level statements, so a separate <code>Main</code> method is not required for these examples.</p><pre><code>Console.WriteLine("Hello, C#!");
+Console.Write("Enter your name: ");
+string name = Console.ReadLine() ?? "Student";
+Console.WriteLine($"Welcome, {name}!");</code></pre><h3>4.2 Variables, calculations, and conditionals</h3><pre><code>string product = "Notebook";
+int quantity = 3;
+decimal unitPrice = 7.50m;
+decimal total = quantity * unitPrice;
+
+Console.WriteLine($"{product}: ${total:F2}");
+if (total &gt;= 20m)
+{
+    Console.WriteLine("Order qualifies for a discount.");
+}
+else
+{
+    Console.WriteLine("No discount applies.");
+}</code></pre><p><strong>Discuss:</strong> Why is <code>decimal</code> commonly preferred over <code>double</code> for monetary amounts?</p><h3>4.3 Loops, lists, and methods</h3><pre><code>List&lt;int&gt; scores = new() { 82, 95, 74, 90 };
+foreach (int score in scores)
+{
+    Console.WriteLine($"Score: {score}");
+}
+
+double Average(List&lt;int&gt; values)
+{
+    return values.Average();
+}
+
+Console.WriteLine($"Average: {Average(scores):F1}");</code></pre><h3>4.4 Classes and objects</h3><p>Replace the contents of <code>Program.cs</code> with the following standalone example:</p><pre><code>Book book = new Book("Learning C#", 29.99m);
+Console.WriteLine(book.Describe());
+
+public class Book
+{
+    public string Title { get; set; }
+    public decimal Price { get; set; }
+
+    public Book(string title, decimal price)
+    {
+        Title = title;
+        Price = price;
+    }
+
+    public string Describe()
+    {
+        return $"{Title} costs ${Price:F2}";
+    }
+}</code></pre><p><strong>Concept check:</strong> A class defines a type; an object is an instance of that class. Properties hold data, and methods describe behavior.</p></section>
+<section id="web"><h2>5. Introduction to ASP.NET Core web programming</h2><p>Web applications commonly separate a <strong>client</strong> (browser or other application) from a <strong>server</strong> (ASP.NET Core application). The client sends an HTTP request; the server responds with data, often JSON.</p><table><thead><tr><th>HTTP method</th><th>Typical use</th><th>Example</th></tr></thead><tbody><tr><td>GET</td><td>Retrieve data</td><td><code>GET /api/books</code></td></tr><tr><td>POST</td><td>Create data</td><td><code>POST /api/books</code></td></tr><tr><td>PUT</td><td>Replace/update data</td><td><code>PUT /api/books/1</code></td></tr><tr><td>DELETE</td><td>Remove data</td><td><code>DELETE /api/books/1</code></td></tr></tbody></table><h3>5.1 Create a Minimal API project</h3><p>Open a new terminal outside the console project and enter:</p><pre><code>dotnet new web -n BookApi --framework net10.0
+cd BookApi
+code .</code></pre><h3>5.2 Replace Program.cs with this working API</h3><pre><code>var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+var books = new List&lt;Book&gt;
+{
+    new(1, "Learning C#", "Taylor", 29.99m),
+    new(2, "Web APIs", "Jordan", 34.50m)
+};
+
+app.MapGet("/", () =&gt; "Book API is running");
+
+app.MapGet("/api/books", () =&gt; Results.Ok(books));
+
+app.MapGet("/api/books/{id:int}", (int id) =&gt;
+{
+    var book = books.FirstOrDefault(b =&gt; b.Id == id);
+    return book is null ? Results.NotFound() : Results.Ok(book);
+});
+
+app.MapPost("/api/books", (CreateBook request) =&gt;
+{
+    if (string.IsNullOrWhiteSpace(request.Title) || request.Price &lt; 0)
+        return Results.BadRequest("Title is required and price must be nonnegative.");
+
+    int id = books.Count == 0 ? 1 : books.Max(b =&gt; b.Id) + 1;
+    var book = new Book(id, request.Title, request.Author, request.Price);
+    books.Add(book);
+    return Results.Created($"/api/books/{id}", book);
+});
+
+app.Run();
+
+record Book(int Id, string Title, string Author, decimal Price);
+record CreateBook(string Title, string Author, decimal Price);</code></pre><p><strong>Why this design?</strong> <code>MapGet</code> creates GET routes; <code>MapPost</code> creates a POST route; <code>Results.Ok</code>, <code>Results.NotFound</code>, and <code>Results.Created</code> return meaningful HTTP statuses. Records define simple data models. The list is stored in memory and resets when the server restarts.</p><h3>5.3 Run and test the API</h3><pre><code>dotnet run --urls http://localhost:5050</code></pre><p>Open <a href="http://localhost:5050/api/books" target="_blank" rel="noopener">http://localhost:5050/api/books</a> in a browser while the server is running. Test the POST route in a terminal:</p><pre><code>curl -i -X POST http://localhost:5050/api/books \
+  -H "Content-Type: application/json" \
+  -d '{"title":"C# Projects","author":"Alex","price":19.95}'</code></pre><p class="small">On Windows PowerShell, use <code>curl.exe</code> for curl syntax. If your terminal handles multiline commands differently, enter the command on one line. Use Ctrl+C to stop the server.</p><h3>5.4 Optional browser front end</h3><p>Create <code>wwwroot/index.html</code> in the BookApi project. This page uses JavaScript's <code>fetch()</code> to request JSON from your C# API:</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;Book Catalog&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Book Catalog&lt;/h1&gt;
+  &lt;button id="load"&gt;Load Books&lt;/button&gt;
+  &lt;ul id="books"&gt;&lt;/ul&gt;
+  &lt;script&gt;
+    document.querySelector('#load').addEventListener('click', async () =&gt; {
+      try {
+        const response = await fetch('/api/books');
+        if (!response.ok) throw new Error('Unable to load books');
+        const books = await response.json();
+        const list = document.querySelector('#books');
+        list.replaceChildren();
+        for (const book of books) {
+          const item = document.createElement('li');
+          item.textContent = `${book.title} — $${book.price.toFixed(2)}`;
+          list.appendChild(item);
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p>To serve the page, add <code>app.UseDefaultFiles();</code> and <code>app.UseStaticFiles();</code> <strong>after</strong> <code>var app = builder.Build();</code> and <strong>before</strong> route mappings. Restart the server and open <code>http://localhost:5050/</code>. The existing root GET route returns text at <code>/</code>, so <strong>remove or change</strong> <code>app.MapGet("/", ...)</code> to let the default index page appear.</p><div class="note">Use the same server origin for the HTML and API in this exercise. This avoids cross-origin configuration. The example is instructional and does not include authentication, a database, or production-grade validation.</div></section>
+<section id="exercises"><h2>6. Hands-on lab exercises</h2><h3>Exercise A — Console calculator (20–30 minutes)</h3><ol><li>Create a new console project named <code>PriceCalculator</code>.</li><li>Ask the user for a product name, quantity, and unit price.</li><li>Use <code>int.TryParse</code> and <code>decimal.TryParse</code> to validate input.</li><li>Calculate the subtotal and apply a 10% discount when the subtotal is at least $100.</li><li>Display the final total with two decimal places.</li></ol><p><strong>Check:</strong> Quantity 4 at $30 each should yield a $120 subtotal and $108 final total.</p><h3>Exercise B — Classes and collections (20–30 minutes)</h3><ol><li>Create a <code>Student</code> class with <code>Name</code> and <code>Grade</code> properties.</li><li>Create a list of at least five students.</li><li>Use a loop to display each student.</li><li>Write a method to calculate the class average.</li><li>Display students with grades of 90 or higher.</li></ol><h3>Exercise C — API exploration (30–40 minutes)</h3><ol><li>Run the Book API and retrieve all books.</li><li>Request a book ID that exists and one that does not. Record the status codes.</li><li>POST a new book with valid JSON; verify it appears in the GET results.</li><li>POST a book with an empty title and explain the error.</li><li>Change the API to support <code>GET /api/books/search?author=...</code> (case-insensitive partial author matching).</li></ol><details><summary>Hints for Exercise C</summary><p>Minimal APIs bind query parameters from handler arguments. For searching, try <code>books.Where(b =&gt; b.Author.Contains(author, StringComparison.OrdinalIgnoreCase))</code>. Test an author that matches more than one book.</p></details><h3>Exercise D — Web page (optional, 20–30 minutes)</h3><p>Serve the optional HTML page and add a text field that filters displayed books by title on the client side. Use <code>textContent</code> to insert user-visible text safely.</p></section>
+<section id="discussion"><h2>7. Discussion board: C# and web development</h2><p><strong>Initial post (250–350 words):</strong> C# and ASP.NET Core are widely used for back-end services and business applications. Compare developing a REST API using C#/ASP.NET Core with a language and framework you have previously studied (such as Java/Spring Boot, JavaScript/Node.js, or Python/FastAPI).</p><p>Address <strong>all</strong> of the following: (1) developer experience and language features, (2) typing and error detection, (3) how routes and JSON responses are implemented, (4) one real-world project where you would choose ASP.NET Core, and (5) one trade-off or challenge. Include a short code snippet or specific example and cite at least one technical resource.</p><p><strong>Peer replies:</strong> Respond to two classmates (at least 75 words each). Ask a meaningful technical question or explain a practical difference; avoid replies that only express agreement.</p><p><strong>Evaluation:</strong> accuracy 40%, comparison and reasoning 30%, engagement 20%, clarity/citation 10%.</p></section>
+<section id="assignment"><h2>8. Programming assignment — Student Course API</h2><p><strong>Goal:</strong> Build a working ASP.NET Core Minimal API for managing courses. This is an individual assignment that applies C# fundamentals to web programming.</p><p><strong>Project name:</strong> <code>StudentCourseApi</code> &nbsp; | &nbsp; <strong>Suggested effort:</strong> 4–6 hours &nbsp; | &nbsp; <strong>Total:</strong> 100 points</p><h3>Required model</h3><p>Create a <code>Course</code> record or class with: <code>Id</code> (integer), <code>Code</code> (string), <code>Title</code> (string), <code>Credits</code> (integer), and <code>Instructor</code> (string).</p><h3>Required features</h3><ol><li>Create the project with <code>dotnet new web -n StudentCourseApi --framework net10.0</code>.</li><li>Seed at least five realistic courses in an in-memory list.</li><li>Implement <code>GET /api/courses</code> to return all courses.</li><li>Implement <code>GET /api/courses/{id}</code> to return a course or HTTP 404.</li><li>Implement <code>POST /api/courses</code> to add a course and return HTTP 201.</li><li>Implement <code>PUT /api/courses/{id}</code> to update an existing course or return HTTP 404.</li><li>Implement <code>DELETE /api/courses/{id}</code> to delete a course or return HTTP 404.</li><li>Reject invalid submissions with HTTP 400: blank course code/title/instructor, or credits outside 1–6.</li><li>Build a simple HTML/JavaScript page, served by ASP.NET Core, that lists courses using <code>fetch()</code> and displays the course code, title, and credits.</li><li>Include a <code>README.md</code> with setup commands, API endpoints, test examples, and screenshots.</li></ol><h3>Example JSON for POST</h3><pre><code>{
+  "code": "CMPS360",
+  "title": "Web Programming",
+  "credits": 3,
+  "instructor": "Professor Smith"
+}</code></pre><h3>Required testing evidence</h3><p>Provide screenshots or saved terminal output demonstrating: successful GET all; successful GET by ID; missing ID returning 404; successful POST returning 201; invalid POST returning 400; successful PUT; successful DELETE; and the working browser interface. Explain how you tested the application.</p><h3>Deliverables</h3><ol><li>GitHub repository URL with all source files and a <code>.gitignore</code> that excludes <code>bin/</code> and <code>obj/</code>.</li><li>README with prerequisites, run instructions, API routes, and sample JSON.</li><li>Eight testing screenshots or equivalent clearly labeled evidence.</li><li>A 150–250 word reflection describing what you learned, one issue you debugged, and how the API connects to the browser page.</li></ol><h3>Grading rubric</h3><table><thead><tr><th>Category</th><th>Points</th></tr></thead><tbody><tr><td>C# model, list, and code organization</td><td>15</td></tr><tr><td>GET, POST, PUT, DELETE endpoints and HTTP statuses</td><td>35</td></tr><tr><td>Validation and error handling</td><td>15</td></tr><tr><td>HTML/JavaScript front end and API integration</td><td>15</td></tr><tr><td>Testing evidence and README</td><td>10</td></tr><tr><td>GitHub submission and reflection</td><td>10</td></tr><tr><th>Total</th><th>100</th></tr></tbody></table><div class="note"><strong>Submission note:</strong> Submit your GitHub link and screenshots to the course LMS by the instructor's assigned deadline. Do not submit only screenshots: the source code must run. Data may reset on server restart; a database is not required.</div><h3>Stretch goals (optional)</h3><p>Add a search endpoint by course code; sort by credits; add a form that creates a course; or persist records using SQLite and Entity Framework Core. Stretch goals do not replace required features.</p></section>
+<section><h2>9. Quick review and exit ticket</h2><ol><li>What is the difference between C#, .NET, and ASP.NET Core?</li><li>What does <code>dotnet run</code> do?</li><li>When should an API return 404 rather than 400?</li><li>Why does a POST endpoint commonly return 201?</li><li>How does JavaScript <code>fetch()</code> communicate with a C# server?</li></ol><p><strong>Exit ticket:</strong> Submit one working API endpoint, its request URL, the response JSON or text, and a brief explanation of how the endpoint works.</p></section></main><footer>Introduction to C# &amp; ASP.NET Core • Student learning module • Visual Studio Code</footer></body></html>
