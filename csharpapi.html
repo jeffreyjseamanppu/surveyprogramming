@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Survey of Programming | C# Module 2</title><style>
+:root{--navy:#17324d;--blue:#176a9c;--pale:#eef6fb;--line:#d9e4eb;--text:#243444}*{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:var(--text);font:16px/1.65 Arial,Helvetica,sans-serif}.page{max-width:1000px;margin:32px auto;background:#fff;padding:44px 52px;box-shadow:0 4px 22px #15344c15}h1,h2,h3{line-height:1.3;color:var(--navy)}h1{font-size:2.25rem;margin:0 0 8px}h2{font-size:1.55rem;border-bottom:2px solid var(--line);padding-bottom:8px;margin-top:38px}h3{font-size:1.14rem;margin-top:24px}.subtitle{color:#496b82;font-size:1.15rem}.meta{background:var(--pale);border-left:5px solid var(--blue);padding:15px 20px;margin:24px 0}.tag{display:inline-block;background:#dceef9;color:#145783;border-radius:20px;padding:3px 12px;font-size:.85rem;font-weight:bold}a{color:#12639a}a:hover{text-decoration:none}table{border-collapse:collapse;width:100%;margin:16px 0}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:var(--pale)}pre{background:#152738;color:#e6f2fa;padding:20px;border-radius:8px;overflow:auto;font-size:.9rem;line-height:1.55}code{font-family:Consolas,Monaco,monospace}p code,li code,td code{background:#eef2f5;padding:2px 5px;border-radius:3px}.video{padding:17px 20px;border:1px solid var(--line);border-radius:9px;margin:16px 0}.video h3{margin:0 0 5px}.note{background:#fff8e8;border-left:4px solid #d99a24;padding:12px 18px}.rubric td:last-child,.rubric th:last-child{text-align:right;white-space:nowrap}footer{margin-top:38px;color:#5b7180;font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}@media(max-width:650px){.page{margin:0;padding:22px 18px}h1{font-size:1.75rem}pre{font-size:.78rem}}@media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none;padding:15px}a{color:#000}}
+</style></head><body><main class="page"><header><span class="tag">Survey of Programming</span><h1>C# Module 2: Building and Extending REST APIs</h1><p class="subtitle">ASP.NET Core • CRUD Operations • API Testing • LINQ</p></header>
+<div class="meta"><strong>Duration:</strong> One week<br><strong>Prerequisite:</strong> Introduction to C#, ASP.NET Core, and a basic Web API<br><strong>Tools:</strong> .NET SDK, Visual Studio Code, ASP.NET Core, Postman or another REST client</div>
+<section><h2>Module Overview</h2><p>Last week, we introduced C# and ASP.NET Core, explored how to build a basic Web API, created endpoints, and returned data through HTTP requests. This week, you will extend your previous API into a functional REST service that can retrieve, create, update, and delete records. You will work with C# models, route parameters, validation, HTTP status codes, LINQ filtering, and endpoint testing.</p><p><strong>Important:</strong> Continue your previous API project rather than starting a new project. Our guided example uses NFL teams; you may adapt the concepts to your own existing project.</p><h3>Learning Objectives</h3><ol><li>Explain how REST APIs communicate through HTTP requests and responses.</li><li>Implement GET, POST, PUT, and DELETE endpoints.</li><li>Represent data using C# model classes.</li><li>Use route parameters to retrieve and modify records.</li><li>Validate requests and return meaningful HTTP status codes.</li><li>Test API operations with Postman or another REST client.</li><li>Explain how frontend applications interact with backend APIs.</li></ol></section>
+<section><h2>Part 1: Lecture — CRUD and REST APIs</h2><p>CRUD stands for <strong>Create, Read, Update, and Delete</strong>. These operations form the foundation of many web applications and services.</p><table><thead><tr><th>Operation</th><th>HTTP Method</th><th>Purpose</th></tr></thead><tbody><tr><td>Create</td><td>POST</td><td>Add a record</td></tr><tr><td>Read</td><td>GET</td><td>Retrieve records</td></tr><tr><td>Update</td><td>PUT</td><td>Modify a record</td></tr><tr><td>Delete</td><td>DELETE</td><td>Remove a record</td></tr></tbody></table><h3>Example NFL Teams API Routes</h3><table><thead><tr><th>Endpoint</th><th>Purpose</th></tr></thead><tbody><tr><td><code>GET /api/teams</code></td><td>List all teams</td></tr><tr><td><code>GET /api/teams/1</code></td><td>Retrieve one team</td></tr><tr><td><code>POST /api/teams</code></td><td>Create a team</td></tr><tr><td><code>PUT /api/teams/1</code></td><td>Update a team</td></tr><tr><td><code>DELETE /api/teams/1</code></td><td>Delete a team</td></tr></tbody></table><h3>Common HTTP Status Codes</h3><table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td>200 OK</td><td>Request succeeded</td></tr><tr><td>201 Created</td><td>New resource created</td></tr><tr><td>204 No Content</td><td>Request succeeded without a response body</td></tr><tr><td>400 Bad Request</td><td>Request contains invalid data</td></tr><tr><td>404 Not Found</td><td>Requested resource does not exist</td></tr><tr><td>500 Internal Server Error</td><td>Unexpected server-side failure</td></tr></tbody></table></section>
+<section><h2>Part 2: Required Instructional Videos</h2><p>Watch Videos 1–3 before beginning the programming assignment. Video 4 provides additional guidance for API testing. Video lengths are approximate; availability and durations may change.</p><div class="video"><h3>Video 1 — Implementing a Web API in .NET</h3><p><strong>Source:</strong> Microsoft Learn · Approximately 15 minutes<br><strong>Focus:</strong> ASP.NET Core Minimal APIs and CRUD endpoints.</p><p><a href="https://learn.microsoft.com/en-us/shows/back-end-web-development-with-dotnet-for-beginners/implementing-a-web-api-in-dotnet-backend-web-development-with-dotnet-for-beginners" target="_blank" rel="noopener noreferrer">Watch Video 1 on Microsoft Learn</a></p></div><div class="video"><h3>Video 2 — How to Create a Web API with ASP.NET Core</h3><p><strong>Source:</strong> Tech With Pat · Approximately 16 minutes<br><strong>Focus:</strong> API models, controllers, CRUD operations, and Swagger. This controller-based demonstration complements the Minimal API lab.</p><p><a href="https://www.youtube.com/watch?v=sWJayOop4k8" target="_blank" rel="noopener noreferrer">Watch Video 2 on YouTube</a></p></div><div class="video"><h3>Video 3 — HTTP Methods Explained with Postman</h3><p><strong>Source:</strong> Automation Step by Step · Approximately 14 minutes<br><strong>Focus:</strong> GET, POST, PUT, PATCH, and DELETE requests.</p><p><a href="https://www.youtube.com/watch?v=geGsavlMVDQ" target="_blank" rel="noopener noreferrer">Watch Video 3 on YouTube</a></p></div><div class="video"><h3>Video 4 — Learn Postman for API Testing (Optional)</h3><p><strong>Source:</strong> Automation Step by Step · Watch sections from approximately 17:26 to 43:43<br><strong>Focus:</strong> Creating and testing HTTP requests in Postman.</p><p><a href="https://www.youtube.com/watch?v=wEOLZq-7DYs" target="_blank" rel="noopener noreferrer">Watch Video 4 on YouTube</a></p></div></section>
+<section><h2>Part 3: Guided Lab — Extend the NFL Teams API</h2><h3>Step 1: Open Your Existing Project</h3><p>Open your existing ASP.NET Core project in Visual Studio Code. In the integrated terminal, execute:</p><pre><code>dotnet restore
+dotnet run</code></pre><p>Confirm the server starts and note the localhost URL displayed in the terminal. Keep this terminal running while testing.</p><h3>Step 2: Define a Model</h3><p>Create <code>Models/Team.cs</code> (or adapt your existing model). If your project's namespace differs, update the namespace accordingly.</p><pre><code>namespace NFLTeamsApi.Models
+{
+    public class Team
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public string City { get; set; } = "";
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+    }
+}</code></pre><h3>Step 3: Add CRUD Endpoints</h3><p>For a Minimal API project, use the following as a reference for your <code>Program.cs</code>. If your previous project used controllers, implement the equivalent endpoints in your existing controller instead of replacing its architecture.</p><pre><code>using NFLTeamsApi.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+var teams = new List&lt;Team&gt;
+{
+    new Team { Id = 1, Name = "Steelers", City = "Pittsburgh", Wins = 8, Losses = 3 },
+    new Team { Id = 2, Name = "Eagles", City = "Philadelphia", Wins = 9, Losses = 2 }
+};
+
+app.MapGet("/api/teams", () =&gt; Results.Ok(teams));
+
+app.MapGet("/api/teams/{id:int}", (int id) =&gt;
+{
+    var team = teams.FirstOrDefault(t =&gt; t.Id == id);
+    return team is null ? Results.NotFound() : Results.Ok(team);
+});
+
+app.MapPost("/api/teams", (Team team) =&gt;
+{
+    if (string.IsNullOrWhiteSpace(team.Name) ||
+        string.IsNullOrWhiteSpace(team.City) ||
+        team.Wins &lt; 0 || team.Losses &lt; 0)
+        return Results.BadRequest("Invalid team data.");
+
+    team.Id = teams.Count == 0 ? 1 : teams.Max(t =&gt; t.Id) + 1;
+    teams.Add(team);
+    return Results.Created($"/api/teams/{team.Id}", team);
+});
+
+app.MapPut("/api/teams/{id:int}", (int id, Team updated) =&gt;
+{
+    var team = teams.FirstOrDefault(t =&gt; t.Id == id);
+    if (team is null) return Results.NotFound();
+
+    if (string.IsNullOrWhiteSpace(updated.Name) ||
+        string.IsNullOrWhiteSpace(updated.City) ||
+        updated.Wins &lt; 0 || updated.Losses &lt; 0)
+        return Results.BadRequest("Invalid team data.");
+
+    team.Name = updated.Name;
+    team.City = updated.City;
+    team.Wins = updated.Wins;
+    team.Losses = updated.Losses;
+    return Results.Ok(team);
+});
+
+app.MapDelete("/api/teams/{id:int}", (int id) =&gt;
+{
+    var team = teams.FirstOrDefault(t =&gt; t.Id == id);
+    if (team is null) return Results.NotFound();
+    teams.Remove(team);
+    return Results.NoContent();
+});
+
+app.Run();</code></pre><div class="note"><strong>Lab note:</strong> This example stores data in memory, not in a database. Changes are lost when the application restarts. The team records are sample values, not current NFL standings. Use the localhost port printed by <code>dotnet run</code> for your API requests.</div><h3>Step 4: Test Your Endpoints</h3><p>Using Postman or another REST client, submit requests to your running API. For a POST request to <code>/api/teams</code>, choose <strong>Body → raw → JSON</strong> and enter:</p><pre><code>{
+  "name": "Ravens",
+  "city": "Baltimore",
+  "wins": 7,
+  "losses": 4
+}</code></pre><p>Confirm the server returns HTTP 201 and a new ID. Use GET to verify the new team appears. Next, use PUT to change its win/loss values and DELETE to remove it. Finally, request the deleted ID and verify that the API returns 404.</p><h3>Step 5: Independent Lab Challenges</h3><ol><li><strong>Search by city:</strong> Implement <code>GET /api/teams/city/{city}</code> to return matching teams, ignoring capitalization.</li><li><strong>Filter by wins:</strong> Implement <code>GET /api/teams/wins/{minimum}</code> to return teams with wins greater than or equal to the requested minimum.</li></ol><p>Use LINQ methods such as <code>Where()</code> and <code>ToList()</code>. Test each endpoint with matching and nonmatching values.</p></section>
+<section><h2>Part 4: Weekly Programming Assignment</h2><p><span class="tag">100 Points</span></p><h3>Assignment: Build a RESTful Management API</h3><p>Extend the ASP.NET Core Web API you created last week. You may continue the NFL Teams API or use your existing topic, such as students, products, movies, vehicles, or employees. Your goal is to produce a working API that can create, read, update, delete, and filter records.</p><table class="rubric"><thead><tr><th>Requirement</th><th>Points</th></tr></thead><tbody><tr><td><strong>Model and sample data:</strong> Include at least five properties (including unique ID) and at least five sample records.</td><td>15</td></tr><tr><td><strong>CRUD operations:</strong> Implement GET all, GET by ID, POST, PUT, and DELETE using appropriate HTTP methods and responses.</td><td>40</td></tr><tr><td><strong>Advanced endpoint:</strong> Add one GET endpoint that filters/searches by a property other than ID using LINQ.</td><td>15</td></tr><tr><td><strong>Validation:</strong> Reject invalid requests with HTTP 400 and return HTTP 404 for missing records. Demonstrate at least one invalid request.</td><td>15</td></tr><tr><td><strong>Testing and documentation:</strong> Test all six endpoints, provide screenshots of requests/responses, and include a README with instructions.</td><td>15</td></tr><tr><th>Total</th><th>100</th></tr></tbody></table><h3>Submission Requirements</h3><ol><li>Submit a ZIP of your C# project (exclude <code>bin</code> and <code>obj</code>) or a GitHub repository link.</li><li>Include a README explaining the API, its routes, and how to run it.</li><li>Provide screenshots demonstrating GET, POST, PUT, DELETE, your filtering endpoint, and one invalid request.</li><li>Write a 150–200 word reflection explaining what you learned and which part was most challenging.</li></ol><h3>Video-Based Testing Checklist</h3><ul><li>Run GET to display all records.</li><li>Run POST to create a record.</li><li>Run PUT to modify the new record.</li><li>Run DELETE to remove it.</li><li>Run GET for a nonexistent ID and verify HTTP 404.</li></ul><p>Include evidence of these tests in your assignment submission.</p></section>
+<section><h2>Part 5: Discussion</h2><h3>How Do REST APIs Connect Different Programming Languages?</h3><p>Imagine you have developed a REST API using C# and ASP.NET Core. Could a frontend written in JavaScript, an application written in Python, or a mobile app use that same API? Explain why or why not. Provide a real-world example of an application that benefits from this architecture.</p><p><strong>Participation requirements:</strong> Write an initial response of at least 150 words and reply thoughtfully to at least one classmate.</p></section>
+<section><h2>Additional Resources</h2><ul><li><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api" target="_blank" rel="noopener noreferrer">Microsoft Learn — Create a Minimal API with ASP.NET Core</a></li><li><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis" target="_blank" rel="noopener noreferrer">Microsoft Learn — ASP.NET Core Minimal APIs</a></li><li><a href="https://learn.microsoft.com/en-us/dotnet/csharp/linq/" target="_blank" rel="noopener noreferrer">Microsoft Learn — LINQ in C#</a></li></ul></section>
+<section><h2>Looking Ahead</h2><p>With this module, you will have practiced the key skills needed to build and test REST APIs in C#: routing, data models, CRUD operations, validation, LINQ filtering, and HTTP responses. These concepts will help you compare how different programming languages implement backend services in upcoming modules.</p></section><footer>Survey of Programming · C# / ASP.NET Core · Module 2</footer></main></body></html>
